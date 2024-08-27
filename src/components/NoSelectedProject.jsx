@@ -37,6 +37,9 @@ const NoSelectedProject = ({ handleAddProject }) => {
                color: 'black',
                borderColor: 'transparent',
                backgroundColor: '#888888',
+               ':hover': {
+                  backgroundColor: '#C0C0C0',
+               },
             }}
             onClick={handleAddProject}
          >

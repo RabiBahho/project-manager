@@ -1,11 +1,4 @@
-import {
-   Button,
-   Container,
-   Grid,
-   List,
-   ListItem,
-   Typography,
-} from '@mui/material';
+import { Button, Container, Grid, Typography } from '@mui/material';
 
 const SideBar = ({ projects, handleAddProject }) => {
    return (
@@ -34,7 +27,13 @@ const SideBar = ({ projects, handleAddProject }) => {
          <Button
             color='black'
             variant='outlined'
-            sx={{ backgroundColor: '#dbd8e3', textTransform: 'none' }}
+            sx={{
+               backgroundColor: '#dbd8e3',
+               textTransform: 'none',
+               ':hover': {
+                  backgroundColor: '#A9A9A9',
+               },
+            }}
             onClick={handleAddProject}
          >
             + Add Project
@@ -55,7 +54,9 @@ const SideBar = ({ projects, handleAddProject }) => {
                   sx={{
                      color: 'black',
                      width: 'fit-content',
-
+                     ':hover': {
+                        backgroundColor: '#A9A9A9',
+                     },
                      textTransform: 'none',
                      backgroundColor: '#dbd8e3',
                   }}

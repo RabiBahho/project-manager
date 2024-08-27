@@ -18,17 +18,19 @@ function App() {
    function handleAddProject(projectData, e) {
       setProjectsState((prevState) => {
          const newProject = { ...projectData, id: Math.random() };
-         return { ...prevState, projects: [...prevState.projects, newProject] };
+         return {
+            ...prevState,
+            selectedProjectId: undefined,
+            projects: [...prevState.projects, newProject],
+         };
       });
    }
 
-   console.log(projectsState);
-
-   //  function handleCancelAddProject() {
-   //     setProjectsState((prevState) => {
-   //        return { ...prevState, selectedProjectId: null };
-   //     });
-   //  }
+   function handleCancel() {
+      setProjectsState((prevState) => {
+         return { ...prevState, selectedProjectId: undefined };
+      });
+   }
 
    let content;
    if (projectsState.selectedProjectId === undefined) {
@@ -38,6 +40,7 @@ function App() {
          <NewProject
             handleStartNewProject={handleStartNewProject}
             handleAddProject={handleAddProject}
+            handleCancel={handleCancel}
          />
       );
    }
