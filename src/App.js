@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import NewProject from './components/NewProject';
+import SideBar from './components/SideBar';
+import NoSelectedProject from './components/NoSelectedProject';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   const [addProject, setAddProject] = useState(false);
+
+   function handleAddProject() {
+      setAddProject(!addProject);
+   }
+
+   return (
+      <main
+         style={{
+            height: '100vh',
+            marginTop: '2rem',
+            marginBottom: '2rem',
+            display: 'flex',
+            flexDirection: 'row',
+         }}
+      >
+         <SideBar handleAddProject={handleAddProject} />
+         {addProject && <NewProject handleAddProject={handleAddProject} />}
+         {!addProject && (
+            <NoSelectedProject handleAddProject={handleAddProject} />
+         )}
+      </main>
+   );
 }
 
 export default App;
