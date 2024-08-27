@@ -4,10 +4,42 @@ import SideBar from './components/SideBar';
 import NoSelectedProject from './components/NoSelectedProject';
 
 function App() {
-   const [addProject, setAddProject] = useState(false);
+   const [projectsState, setProjectsState] = useState({
+      selectedProjectId: undefined,
+      projects: [],
+   });
 
-   function handleAddProject() {
-      setAddProject(!addProject);
+   function handleStartNewProject() {
+      setProjectsState((prevState) => {
+         return { ...prevState, selectedProjectId: null };
+      });
+   }
+
+   function handleAddProject(projectData, e) {
+      setProjectsState((prevState) => {
+         const newProject = { ...projectData, id: Math.random() };
+         return { ...prevState, projects: [...prevState.projects, newProject] };
+      });
+   }
+
+   console.log(projectsState);
+
+   //  function handleCancelAddProject() {
+   //     setProjectsState((prevState) => {
+   //        return { ...prevState, selectedProjectId: null };
+   //     });
+   //  }
+
+   let content;
+   if (projectsState.selectedProjectId === undefined) {
+      content = <NoSelectedProject handleAddProject={handleStartNewProject} />;
+   } else if (projectsState.selectedProjectId === null) {
+      content = (
+         <NewProject
+            handleStartNewProject={handleStartNewProject}
+            handleAddProject={handleAddProject}
+         />
+      );
    }
 
    return (
@@ -20,11 +52,11 @@ function App() {
             flexDirection: 'row',
          }}
       >
-         <SideBar handleAddProject={handleAddProject} />
-         {addProject && <NewProject handleAddProject={handleAddProject} />}
-         {!addProject && (
-            <NoSelectedProject handleAddProject={handleAddProject} />
-         )}
+         <SideBar
+            handleAddProject={handleStartNewProject}
+            projects={projectsState.projects}
+         />
+         {content}
       </main>
    );
 }

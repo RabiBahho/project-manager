@@ -1,6 +1,25 @@
-import { Box, Button, Container, TextField } from '@mui/material';
+import { Box, Button, Container, FormControl, TextField } from '@mui/material';
+import { useRef } from 'react';
 
-const NewProject = ({ handleAddProject }) => {
+const NewProject = ({ handleStartNewProject, handleAddProject }) => {
+   const title = useRef();
+   const description = useRef();
+   const dueDate = useRef();
+   const buttonRef = useRef();
+
+   function handleSave(e) {
+      e.preventDefault();
+      const enteredTitle = title.current.value;
+      const enteredDescription = description.current.value;
+      const enteredDueDAte = dueDate.current.value;
+
+      handleAddProject({
+         title: enteredTitle,
+         description: enteredDescription,
+         dueDAte: enteredDueDAte,
+      });
+   }
+
    const buttonStyles = {
       color: 'black',
       borderColor: 'transparent',
@@ -37,40 +56,63 @@ const NewProject = ({ handleAddProject }) => {
                gap: '1rem',
             }}
          >
-            <Button sx={{ ...buttonStyles }} variant='outlined'>
-               Save
-            </Button>
             <Button
                sx={{ ...buttonStyles }}
                variant='outlined'
-               onClick={handleAddProject}
+               onClick={(e) => {
+                  handleSave(e);
+               }}
+               type='submit'
+               form='submit'
             >
+               Save
+            </Button>
+            <Button sx={{ ...buttonStyles }} variant='outlined'>
                Cancel
             </Button>
          </Box>
-         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <TextField
-               sx={{
-                  ...textFieldStyles,
-               }}
-               label='Title'
-               variant='outlined'
-            />
-            <TextField
-               sx={{
-                  ...textFieldStyles,
-               }}
-               label='Description'
-               variant='outlined'
-            />
-            <TextField
-               sx={{
-                  ...textFieldStyles,
-               }}
-               label='Due Date'
-               variant='outlined'
-            />
-         </Box>
+         <form id='submit'>
+            <FormControl sx={{ width: '100%' }}>
+               <Box
+                  sx={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
+               >
+                  <TextField
+                     sx={{
+                        ...textFieldStyles,
+                     }}
+                     label='Title'
+                     variant='outlined'
+                     inputRef={title}
+                     name='title'
+                     type='text'
+                     required
+                  />
+                  <TextField
+                     sx={{
+                        ...textFieldStyles,
+                     }}
+                     label='Description'
+                     variant='outlined'
+                     inputRef={description}
+                     type='text'
+                     required={true}
+                     multiline
+                     rows={4}
+                  />
+                  <TextField
+                     sx={{
+                        ...textFieldStyles,
+                     }}
+                     label='Due Date'
+                     variant='outlined'
+                     InputLabelProps={{ shrink: true }}
+                     inputRef={dueDate}
+                     type='date'
+                     required={true}
+                  />
+               </Box>
+            </FormControl>
+         </form>
       </Container>
    );
 };

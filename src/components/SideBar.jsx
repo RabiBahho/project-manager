@@ -1,6 +1,13 @@
-import { Button, Container, Typography } from '@mui/material';
+import {
+   Button,
+   Container,
+   Grid,
+   List,
+   ListItem,
+   Typography,
+} from '@mui/material';
 
-const SideBar = ({ handleAddProject }) => {
+const SideBar = ({ projects, handleAddProject }) => {
    return (
       <Container
          sx={{
@@ -32,7 +39,31 @@ const SideBar = ({ handleAddProject }) => {
          >
             + Add Project
          </Button>
-         <ul></ul>
+         <Grid
+            container
+            sx={{
+               display: 'flex',
+               flexDirection: 'column',
+               gap: '1rem',
+               marginTop: '2rem',
+               alignItems: 'center',
+            }}
+         >
+            {projects.map((project) => (
+               <Button
+                  key={project.id}
+                  sx={{
+                     color: 'black',
+                     width: 'fit-content',
+
+                     textTransform: 'none',
+                     backgroundColor: '#dbd8e3',
+                  }}
+               >
+                  {project.title}
+               </Button>
+            ))}
+         </Grid>
       </Container>
    );
 };
