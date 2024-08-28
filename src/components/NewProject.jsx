@@ -1,4 +1,4 @@
-import { Box, Button, Container, Modal, TextField } from '@mui/material';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import { useRef } from 'react';
 import ModalPopUp from './ModalPopUp';
 
@@ -30,7 +30,7 @@ const NewProject = ({
       handleAddProject({
          title: enteredTitle,
          description: enteredDescription,
-         dueDAte: enteredDueDate,
+         dueDate: enteredDueDate,
       });
    }
 
@@ -52,7 +52,16 @@ const NewProject = ({
    return (
       <>
          <ModalPopUp ref={modal}>
-            <h2>aklsdj</h2>
+            <Typography
+               fontSize={'20px'}
+               fontWeight={'bold'}
+               marginBottom={'1rem'}
+            >
+               Invalid Input
+            </Typography>
+            <Typography marginBottom={'1rem'}>
+               Please fill every Input field with some Text !
+            </Typography>
          </ModalPopUp>
          <Container
             sx={{

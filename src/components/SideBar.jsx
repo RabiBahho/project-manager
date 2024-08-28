@@ -1,6 +1,11 @@
 import { Button, Container, Grid, Typography } from '@mui/material';
 
-const SideBar = ({ projects, handleAddProject }) => {
+const SideBar = ({
+   projects,
+   handleAddProject,
+   handleSelectProject,
+   selectedProjectId,
+}) => {
    return (
       <Container
          sx={{
@@ -58,8 +63,12 @@ const SideBar = ({ projects, handleAddProject }) => {
                         backgroundColor: '#A9A9A9',
                      },
                      textTransform: 'none',
-                     backgroundColor: '#dbd8e3',
+                     backgroundColor:
+                        selectedProjectId === project.id
+                           ? 'rgb(168 162 158)'
+                           : '#dbd8e3',
                   }}
+                  onClick={() => handleSelectProject(project.id)}
                >
                   {project.title}
                </Button>
