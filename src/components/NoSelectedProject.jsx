@@ -26,7 +26,10 @@ const NoSelectedProject = ({ handleAddProject }) => {
                height={'100%'}
             />
          </Box>
-         <Typography variant='h3' sx={{ marginBottom: '1rem' }}>
+         <Typography
+            variant='h3'
+            sx={{ marginBottom: '1rem', textAlign: 'center' }}
+         >
             No Project Selected
          </Typography>
          <Typography sx={{ marginBottom: '1rem' }}>

@@ -1,4 +1,10 @@
-import { Button, Container, Grid, Typography } from '@mui/material';
+import {
+   Button,
+   Container,
+   Grid,
+   Typography,
+   useMediaQuery,
+} from '@mui/material';
 
 const SideBar = ({
    projects,
@@ -6,13 +12,15 @@ const SideBar = ({
    handleSelectProject,
    selectedProjectId,
 }) => {
+   const md = useMediaQuery('(min-width: 700px)');
    return (
       <Container
          sx={{
-            width: '20rem',
+            width: !md ? '100%' : '20rem',
             backgroundColor: '#28282B',
             margin: 0,
             borderTopRightRadius: '2rem',
+            borderTopLeftRadius: !md ? '2rem' : '',
             paddingY: '2rem',
             display: 'flex',
             flexDirection: 'column',

@@ -1,4 +1,11 @@
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import {
+   Box,
+   Button,
+   Container,
+   TextField,
+   Typography,
+   useMediaQuery,
+} from '@mui/material';
 import { useState } from 'react';
 
 const SelectedProject = ({
@@ -24,7 +31,7 @@ const SelectedProject = ({
       setEnteredTask('');
       handleAddTask(enteredTask);
    }
-
+   const md = useMediaQuery('(min-width: 700px)');
    return (
       <>
          <Container
@@ -34,7 +41,7 @@ const SelectedProject = ({
                backgroundColor: '#D3D3D3',
                borderTopLeftRadius: '2rem',
                borderTopRightRadius: '2rem',
-               width: '35rem',
+               width: !md ? '100%' : '35rem',
                display: 'flex',
                flexDirection: 'column',
                paddingY: '2rem',

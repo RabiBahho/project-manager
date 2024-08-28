@@ -1,4 +1,11 @@
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
+import {
+   Box,
+   Button,
+   Container,
+   TextField,
+   Typography,
+   useMediaQuery,
+} from '@mui/material';
 import { useRef } from 'react';
 import ModalPopUp from './ModalPopUp';
 
@@ -49,6 +56,7 @@ const NewProject = ({
          },
       },
    };
+   const md = useMediaQuery('(min-width: 700px)');
    return (
       <>
          <ModalPopUp ref={modal}>
@@ -70,7 +78,7 @@ const NewProject = ({
                backgroundColor: '#D3D3D3',
                borderTopLeftRadius: '2rem',
                borderTopRightRadius: '2rem',
-               width: '35rem',
+               width: !md ? '100%' : '35rem',
                display: 'flex',
                flexDirection: 'column',
             }}
