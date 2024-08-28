@@ -1,3 +1,5 @@
+"Hello, this is a project management app still under development. You can add projects, create tasks, and include additional inputs. Please note that the code is still being cleaned and optimized."
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
